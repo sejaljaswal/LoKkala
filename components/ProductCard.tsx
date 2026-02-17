@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { addItemToCart } from "@/lib/cart";
+
 import { useRouter } from "next/navigation";
 import { addToCart } from "@/lib/cart";
+
 import { addToWishlist } from "@/lib/wishlist";
 import { useToast } from "@/components/Toast";
 
@@ -44,6 +48,21 @@ const ProductCard = ({ id, image, title, artistName, price }: ProductCardProps) 
     const handleAddToCart = async () => {
         if (!id) return;
         
+
+        addItemToCart({
+            id: id || `${title}-${artistName}`.replace(/\s+/g, "-").toLowerCase(),
+            title,
+            artistName,
+            price,
+            image: image,
+        });
+
+        showToast(`${title} added to cart!`, "success");
+        // Show feedback animation
+        setTimeout(() => {
+            setIsAdding(false);
+        }, 1000);
+
         setIsAdding(true);
         try {
             await addToCart(id);
@@ -60,6 +79,7 @@ const ProductCard = ({ id, image, title, artistName, price }: ProductCardProps) 
                 setIsAdding(false);
             }, 1000);
         }
+
     };
 
     return (

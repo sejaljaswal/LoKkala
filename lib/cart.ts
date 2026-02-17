@@ -1,4 +1,5 @@
-// Cart utility functions with API-based persistence
+
+
 
 export interface CartItem {
     id: string;
@@ -60,12 +61,27 @@ export const addToCart = async (artId: string): Promise<boolean> => {
     }
 };
 
+
+export interface AddToCartInput {
+    id: string;
+    title: string;
+    artistName: string;
+    price: number;
+    image: string;
+}
+
+// Add item to cart
+export const addItemToCart = (item: AddToCartInput): void => {
+    const cart = getCart();
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+
 // Remove item from cart
 export const removeFromCart = async (artId: string): Promise<boolean> => {
     try {
         const res = await fetch(`/api/cart/${artId}`, {
             method: "DELETE",
         });
+
 
         if (res.ok) {
             window.dispatchEvent(new Event("cartUpdated"));
