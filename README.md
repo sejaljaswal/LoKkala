@@ -2,8 +2,8 @@
 
 Lokkala is a web platform that promotes local artisans and their handmade products. Users can explore traditional crafts, view artist profiles, and securely purchase authentic handmade items.
 
-**Live Demo:** [https://your-live-demo-link.com ](https://lokkalala.vercel.app/) 
-**GitHub Repo:** [https://your-github-repo-link.com](https://github.com/sejaljaswal/Lokkala)
+**Live Demo:** [Click here](https://lokkalala.vercel.app/) 
+**GitHub Repo:** [click here](https://github.com/sejaljaswal/Lokkala)
 
 ## Features
 
